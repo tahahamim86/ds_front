@@ -1,0 +1,73 @@
+.appointments-section {
+    padding: 20px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.section-header h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #02413b;
+}
+
+.appointments-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.appointment-card {
+    background: #0E2517;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.appointment-card:hover {
+    transform: translateY(-3px);
+    background: #006D6F;
+}
+
+.appointment-info h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.appointment-info p {
+    margin: 3px 0;
+    font-size: 14px;
+    color: #A8D5BA;
+}
+
+.appointment-date {
+    font-size: 12px;
+    color: #D8F3DC;
+}
+
+.appointment-status {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.Upcoming {
+    background-color: #1E9D8B;
+    color: #fff;
+}
+
+.Pending {
+    background-color: #FFC107;
+    color: #000;
+}
+
+.Completed {
+    background-color: #8BBF9C;
+    color: #fff;
+}

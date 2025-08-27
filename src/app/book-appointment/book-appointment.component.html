@@ -1,0 +1,49 @@
+<section class="book-appointment-section">
+  <div class="section-header">
+    <h2>Prendre un Rendez-vous</h2>
+  </div>
+
+  <!-- Country Filter -->
+  <div class="form-group">
+    <label for="country">Filtrer par pays</label>
+    <select id="country" [(ngModel)]="selectedCountry" name="country" (change)="filterDoctors()">
+      <option value="">Tous les pays</option>
+      <option *ngFor="let c of countries" [value]="c">{{c}}</option>
+    </select>
+  </div>
+
+  <!-- Specialty Filter -->
+  <div class="form-group">
+    <label for="specialty">Filtrer par spécialité</label>
+    <select id="specialty" [(ngModel)]="selectedSpecialty" name="specialty" (change)="filterDoctors()">
+      <option value="">Toutes les spécialités</option>
+      <option *ngFor="let s of specialties" [value]="s">{{s}}</option>
+    </select>
+  </div>
+
+  <!-- Doctors List -->
+  <div class="doctors-container">
+    <div class="doctor-card" *ngFor="let doctor of filteredDoctors">
+      <div class="doctor-img">
+        <img [src]="doctor.photo" alt="{{doctor.name}}">
+      </div>
+      <div class="doctor-info">
+        <h3>{{doctor.name}}</h3>
+        <p>{{doctor.specialty}}</p>
+        <p>{{doctor.country}}</p>
+        <p *ngIf="doctor.rating">⭐ {{doctor.rating}}</p>
+      </div>
+      <button (click)="selectDoctor(doctor)">Prendre Rendez-vous</button>
+    </div>
+  </div>
+
+  <!-- Selected Doctor Appointment Form -->
+  <div *ngIf="selectedDoctor" class="appointment-form">
+    <h3>Rendez-vous avec {{selectedDoctor.name}}</h3>
+    <div class="form-group">
+      <label for="date">Date & Heure</label>
+      <input type="datetime-local" id="date" [(ngModel)]="newAppointment.date" name="date" required>
+    </div>
+    <button (click)="bookAppointment()">Réserver</button>
+  </div>
+</section>

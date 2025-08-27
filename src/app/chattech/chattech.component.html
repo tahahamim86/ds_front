@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Technical Team</h2>
+    </div>
+    <div class="staff-member">
+      <img class="staff-logo" src="assets/images/logo.png" alt="Staff Logo" width="100px"/>
+      <span class="staff-name">Tech Staff </span>
+    </div>
+
+  </div>
+
+  <div class="chat-container">
+    <div class="message-area">
+      <div class="bubbleWrapper" *ngFor="let msg of messages">
+        <div class="inlineContainer" [ngClass]="{'otherBubble': !msg.isUser, 'userBubble': msg.isUser}">
+          <img class="inlineIcon" [src]="msg.isUser ? userIcon : otherIcon" width="25px"> &nbsp;
+          <div class="bubble">{{ msg.text}}</div>
+        </div>
+        <span class="timestamp">{{ msg.timestamp }}</span>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input type="text" [(ngModel)]="message" placeholder="Type your message..." />
+      <mat-icon>micorphone</mat-icon> &nbsp;
+      <mat-icon>note_add </mat-icon> &nbsp;
+      <button (click)="sendMessage()" class="btn btn-gray">
+        <i class="bx bx-send"></i>
+      </button>
+    </div>
+  </div>
+</div>

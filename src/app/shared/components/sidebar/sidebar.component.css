@@ -1,0 +1,44 @@
+mat-icon{
+    vertical-align: middle;
+    margin-right:20px
+}
+.profile-card{
+    text-align: center;
+    padding: 20px;
+
+}
+img{
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius:50%;
+    }
+    h6{
+        color: rgb(255, 255, 255);
+    }
+    mat-icon {
+        text-decoration: none;
+        color: white;
+    }
+  mat-nav-list{
+
+
+    height:100%;
+
+  }
+
+  mat-tree{
+    background:transparent ;
+
+
+  }
+  .mdc-list-item__primary-text {
+    color: rgb(242 233 233 / 87%);
+}
+.user1 .user-navbar{
+  background-color :#20bf55;
+  background-image :linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+
+  height: 91vh;
+}
+

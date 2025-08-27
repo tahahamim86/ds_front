@@ -1,0 +1,201 @@
+
+<div class="container">
+  <div class="form-container">
+    <h2 class="form-title">Medical Health Form</h2>
+
+    <!-- Debug Output (Optional) -->
+
+    <form *ngIf="healthForm && !isFormLoading" [formGroup]="healthForm" (ngSubmit)="onSubmit()">
+      <div class="card mb-4">
+        <div class="card-header"><i class="bx bx-health"></i> Medical History</div>
+        <div class="card-body">
+          
+          <!-- Hospital Visits -->
+          <div class="mb-3">
+            <label for="hospitalVisits" class="form-label">Hospital Visits (past year):</label>
+            <input type="number" class="form-control" id="hospitalVisits" formControlName="hospitalVisits" min="0">
+          </div>
+
+          <!-- Surgical Operations -->
+          <div class="mb-3">
+            <label class="form-label">Surgical Operations:</label>
+            <select class="form-select" formControlName="surgicalOperations" (change)="onSurgicalOperationChange($event)">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <div *ngIf="hasSurgicalOperation" class="mb-3">
+            <label for="operationDetails" class="form-label">Operation Details:</label>
+            <textarea class="form-control" id="operationDetails" formControlName="operationDetails" rows="3"></textarea>
+          </div>
+
+          <!-- Family History -->
+          <div class="mb-3">
+            <label for="familyHistory" class="form-label">Family History:</label>
+            <textarea class="form-control" formControlName="familyHistory" rows="3"></textarea>
+          </div>
+
+          <!-- Family History of Osteoporosis -->
+          <div class="mb-3">
+            <label for="familyHistoryOsteoporosis" class="form-label">Family History of Osteoporosis:</label>
+            <select class="form-select" formControlName="familyHistoryOsteoporosis">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          <!-- Menopause Age -->
+          <div class="mb-3">
+            <label for="menopauseAge" class="form-label">Menopause Age:</label>
+            <input type="number" class="form-control" formControlName="menopauseAge" min="0">
+          </div>
+
+          <!-- History of Fracture -->
+          <div class="mb-3">
+            <label for="historyOfFracture" class="form-label">History of Fracture:</label>
+            <input type="number" class="form-control" formControlName="historyOfFracture" min="0">
+          </div>
+
+          <!-- Hypothyroidism -->
+          <div class="mb-3">
+            <label class="form-label">Hypothyroidism:</label>
+            <select class="form-select" formControlName="hypothyroidism">
+              <option [value]="false">No</option>
+              <option [value]="true">Yes</option>
+            </select>
+          </div>
+
+          <!-- Blood Type -->
+          <div class="mb-3">
+            <label class="form-label">Blood Type:</label>
+            <select class="form-select" formControlName="bloodType">
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+
+          <!-- Regular Exercise -->
+          <div class="mb-3">
+            <label class="form-label">Regular Exercise:</label>
+            <select class="form-select" formControlName="sportPractice" (change)="onSportPracticeChange($event)">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <div *ngIf="practicesSport" class="mb-3">
+            <label class="form-label">Exercise Details:</label>
+            <textarea class="form-control" formControlName="sportDetails" rows="2"></textarea>
+          </div>
+
+          <!-- Chronic Diseases -->
+          <div class="mb-3">
+            <label class="form-label">Chronic Diseases:</label>
+            <select class="form-select" formControlName="chronicDiseases">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <!-- Addictions -->
+          <div class="mb-3">
+            <label class="form-label">Addictions:</label>
+            <select class="form-select" formControlName="addiction" (change)="onAddictionChange($event)">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <div *ngIf="isAddicted" class="mb-3">
+            <label class="form-label">Addiction Details:</label>
+            <textarea class="form-control" formControlName="addictionDetails" rows="3"></textarea>
+          </div>
+
+          <!-- Allergies -->
+          <div class="mb-3">
+            <label class="form-label">Allergies:</label>
+            <textarea class="form-control" formControlName="allergies" rows="2"></textarea>
+          </div>
+
+          <!-- Medications -->
+          <div class="mb-3">
+            <label class="form-label">Current Medications:</label>
+            <textarea class="form-control" formControlName="medications" rows="2"></textarea>
+          </div>
+
+          <!-- Smoking -->
+          <div class="mb-3">
+            <label class="form-label">Do you smoke?</label>
+            <select class="form-select" formControlName="smoking">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <!-- Alcohol -->
+          <div class="mb-3">
+            <label class="form-label">Do you consume alcohol?</label>
+            <select class="form-select" formControlName="alcohol">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+
+          <!-- Diet -->
+          <div class="mb-3">
+            <label class="form-label">Describe your typical diet:</label>
+            <textarea class="form-control" formControlName="diet" rows="2"></textarea>
+          </div>
+
+          <!-- Sleep -->
+          <div class="mb-3">
+            <label class="form-label">Average Sleep Hours:</label>
+            <input type="number" class="form-control" formControlName="sleep" min="0">
+          </div>
+
+          <!-- Stress -->
+          <div class="mb-3">
+            <label class="form-label">Stress Level (1–5):</label>
+            <input type="number" class="form-control" formControlName="stress" min="1" max="5">
+          </div>
+        </div>
+      </div>
+
+      <!-- BMI -->
+      <div class="card mb-4">
+        <div class="card-header">BMI Calculation</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Height (cm):</label>
+              <input type="number" class="form-control" formControlName="height" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Weight (kg):</label>
+              <input type="number" class="form-control" formControlName="weight" required>
+            </div>
+          </div>
+
+          <div *ngIf="bmi" class="alert alert-info">
+            <strong>BMI:</strong> {{ bmi }} ({{ bmiCategory }})
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-buttons">
+        <button type="submit" class="btn btn-success" [disabled]="!healthForm.valid">Submit</button>
+        <button type="button" class="btn btn-warning" *ngIf="hasExistingRecord" (click)="onUpdate()">Update</button>
+        <button type="button" class="btn btn-danger" *ngIf="hasExistingRecord" (click)="deleteHealthForm()">Delete</button>
+      </div>
+    </form>
+  </div>
+</div>
+

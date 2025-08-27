@@ -1,0 +1,65 @@
+/* folder.component.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa; /* Softer background color */
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 50px; /* Reduced margin */
+  margin-bottom: 30px; /* Reduced margin */
+  color: #007bff; /* Modern blue color */
+}
+
+.folder-card {
+  padding: 20px; /* Increased padding */
+  border: none; /* Remove border */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  background-color: #fff; /* White card background */
+  margin-bottom: 20px; /* Spacing between cards */
+}
+
+.folder-icon {
+  font-size: 4rem; /* Larger icon size */
+  color: #007bff; /* Blue icon color */
+  margin-bottom: 10px;
+  text-align: center; /* Center the icon */
+}
+
+.folder-title {
+  font-size: 1.2rem; /* Increased title size */
+  font-weight: 500; /* Slightly lighter weight */
+  color: #343a40; /* Darker text color */
+  text-align: center; /* Center the title */
+}
+
+.folder-card:hover {
+  transform: translateY(-5px); /* Move up slightly on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .col-md-6 {
+    max-width: 45%; /* Adjust width for larger screens */
+  }
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  width: 900px;
+  margin: 0 auto;
+  display: block;
+}
+
+.mat-table {
+  margin-top: 20px;
+}
+
+.mat-raised-button {
+  margin: 5px;
+}

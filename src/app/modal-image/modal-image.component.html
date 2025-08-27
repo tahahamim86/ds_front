@@ -1,0 +1,19 @@
+
+<mat-dialog-content>
+  <h3>Disease Information</h3>
+  <!-- Display Document Image -->
+  <img [src]="data.imageUrl" alt="Document Image" class="modal-image" />
+
+  <!-- Display Image Description -->
+<p><strong>Disease name:</strong>{{data.disease_name || 'no data available'}}</p>
+  <p><strong>Image Description:</strong> {{ data.description || 'No Description Available' }}</p>
+  <!-- Display Disease Information -->
+<p><strong>Created at:</strong> {{data.dateAdded || 'no data available'}}</p>
+    
+   
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

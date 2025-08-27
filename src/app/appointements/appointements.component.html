@@ -1,0 +1,19 @@
+<section class="appointments-section">
+  <div class="section-header">
+    <h2>My appointements</h2>
+  </div>
+
+  <div class="appointments-container">
+    <!-- Example appointment card -->
+    <div class="appointment-card" *ngFor="let appointment of appointments">
+      <div class="appointment-info">
+        <h3>{{appointment.doctor}}</h3>
+        <p>{{appointment.specialty}}</p>
+        <span class="appointment-date">{{appointment.date | date:'short'}}</span>
+      </div>
+      <div class="appointment-status" [ngClass]="appointment.status">
+        {{appointment.status}}
+      </div>
+    </div>
+  </div>
+</section>

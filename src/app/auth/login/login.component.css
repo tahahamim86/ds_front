@@ -1,0 +1,218 @@
+.background .shape {
+            height: 150px;
+            width: 150px;
+            position: absolute;
+            border-radius: 50%;
+  }
+a{
+  text-decoration: none;
+}
+h3{
+  color: #0E2517  ;
+  font-weight:bolder;}
+        form {
+            width: 100%;
+            max-width: 400px;
+            max-height: 500px;/* Maximum width for large screens */
+            height: auto;
+            background-color: rgba(255, 255, 255, 0.853);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 20%;
+            left: 50%;
+            padding: 30px 35px;
+        }
+
+        form * {
+            font-family: 'Poppins', sans-serif;
+            color: #012905df;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+        }
+
+        form h3 {
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input {
+            display: block;
+            height: 40px;
+            width: 100%;
+            border-radius: 5px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+
+        ::placeholder {
+            color: #0c0c0c;
+        }
+
+        button {
+            margin-top: 30px;
+            width: 100%;
+            color: white;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .social {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .social div {
+            width: 48%;
+            background-color: rgba(255, 255, 255, 0.27);
+            border-radius: 3px;
+            padding: 8px 10px;
+            color: #eaf0fb;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .social div:hover {
+            background-color: rgba(255, 255, 255, 0.47);
+        }
+        .google button{
+          background-color:white;
+          border: grey solid 2px;
+        }
+        .google i{
+            color: #db4437; /* Google button color */
+        }
+        .microsoft button{
+          background-color:white;
+          border: grey solid 2px;
+        }
+        .microsoft i{
+            color: #3b5998; /* Google button color */
+        }
+        .social .fb {
+            background-color: #3b5998; /* Facebook button color */
+        }
+
+        .social i {
+            margin-right: 5px;
+        }
+
+        a {
+            color: rgb(157, 219, 244);
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .background {
+                width: 200px; /* Adjust background shape size for smaller screens */
+                top: 10%;
+            }
+
+            form {
+                width: 90%;
+                max-width: 350px; /* Allow for smaller widths on tablets */
+                height: auto;
+                left: 50%;
+                padding: 20px 25px; /* Reduced padding for smaller screens */
+            }
+
+            form h3 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            input {
+                height: 35px;
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px 0;
+            }
+
+            .social div {
+                width: 48%;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            form {
+                width: 90%;
+                max-width: 320px;
+                padding: 15px 20px; /* Further reduce padding on smaller screens */
+            }
+
+            form h3 {
+                font-size: 22px; /* Smaller title for mobile devices */
+                margin-bottom: 10px;
+            }
+
+            input {
+                height: 35px;
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px 0;
+            }
+
+            .social div {
+                font-size: 12px; /* Smaller text size for social buttons */
+            }
+        }
+#username,#password{
+
+border: #778C7B solid 2px;}
+#username:hover{
+  border: #8BBF9C solid 2px  ;
+}
+
+#password:hover{
+  border: #8BBF9C solid 2px  ;
+}
+
+.hr-container  {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hr-container hr{
+  flex: 1;
+  border:0;
+  border-top: 1px solid #000;
+  margin: 0 10px;
+
+}
+.text{
+padding: 0 10px;
+background: white;
+}
+.btn{
+  border: #000 solid 2px;
+}

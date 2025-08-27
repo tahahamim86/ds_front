@@ -1,0 +1,164 @@
+
+/* respiratory-diagnosis.component.css */
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .image {
+    display: block;
+    height: auto;
+  }
+  
+  .blue-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 255, 0.5);
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+  }
+  
+  .green-line {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: green;
+    opacity: 0;
+    transition: opacity 2s ease-in-out, top 2s ease-in-out;
+  }
+  
+  .move {
+    top: 100%;
+    opacity: 1;
+  }
+  
+  .show-blue {
+    opacity: 1;
+  }
+  .scanning-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(0, 255, 0, 0.7);
+    animation: scanAnimation 3s linear infinite;
+  }
+  
+  .scanning-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(0, 255, 0, 0.7);
+    animation: scanAnimation 3s linear infinite;
+  }
+  
+  @keyframes scanAnimation {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+  
+  .accuracy-container {
+    width: 150px;
+    margin: auto;
+  }
+  .typing-text {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.6;
+    white-space: pre-wrap; /* Preserve line breaks */
+    overflow: hidden;
+    border-right: 3px solid rgb(255, 255, 255); /* Typing cursor */
+    animation: blink 0.8s steps(2, start) infinite;
+    padding-right: 5px;
+  }
+  
+  /* Remove cursor after the last sentence finishes */
+  .typing-text.finished {
+    border-right: none;
+  }
+  
+  /* Cursor blinking effect */
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  
+  /* From Uiverse.io by andrew-demchenk0 */ 
+.button_add {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+}
+
+.button_add, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button_add .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button_add .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_add .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.button_add:hover {
+  background: #34974d;
+}
+
+.button_add:hover .button__text {
+  color: transparent;
+}
+
+.button_add:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button_add:active .button__icon {
+  background-color: #2e8644;
+}
+
+.button:active {
+  border: 1px solid #2e8644;
+}

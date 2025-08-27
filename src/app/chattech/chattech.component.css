@@ -1,0 +1,208 @@
+.container {
+  display: flex;
+  height: 90vh;
+  border-radius: 15px;
+  overflow: hidden; /* Prevent content from overflowing */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.sidebar {
+  width: 280px;
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 20px;
+  border-right: 1px solid #eee; /* Lighter border */
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  margin-bottom: 20px;
+  color: #343a40; /* Dark gray heading */
+  font-weight: 600;
+  text-align: center; /* Center the title */
+}
+
+.staff-member {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px; /* Slightly less rounded */
+  transition: background-color 0.2s; /* Smooth hover effect */
+}
+
+.staff-member:hover {
+  background-color: #f0f0f0; /* Lighter background on hover */
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+.staff-logo {
+  width: 60px; /* Slightly smaller logo */
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover; /* Maintain aspect ratio and cover the circle */
+  border: 2px solid white; /* Add a white border to the logo */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.staff-name {
+  font-weight: 500; /* Slightly less bold */
+  color: #343a40;
+}
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.message-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.bubbleWrapper {
+  margin-bottom: 15px; /* Increased spacing between messages */
+  display: flex;
+  align-items: flex-start; /* Align bubbles to the top */
+}
+
+.inlineContainer {
+  display: flex;
+  align-items: flex-start; /* Align icon and bubble to the top */
+}
+
+.otherBubble {
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 12px; /* More rounded bubbles */
+  padding: 12px 16px;
+  margin-left: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Add a subtle shadow */
+}
+
+.userBubble {
+  background-color: #007bff; /* Blue bubble */
+  color: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-right: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Add a subtle shadow */
+}
+
+.inlineIcon {
+  width: 30px; /* Slightly larger icon */
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 5px; /* Adjust vertical alignment */
+}
+
+.timestamp {
+  font-size: 0.85em;
+  color: #777;
+  margin-left: 10px;
+  align-self: flex-end; /* Position timestamp at the bottom */
+}
+
+.input-container {
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #f8f9fa; /* Light gray background */
+  border-radius: 0 0 15px 15px; /* Rounded bottom corners */
+}
+
+.input-container input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ced4da; /* Light gray border */
+  border-radius: 8px; /* More rounded input */
+  margin-right: 10px;
+  transition: border-color 0.2s; /* Smooth border transition */
+}
+
+.input-container input:focus {
+  border-color: #80bdff; /* Highlight border on focus */
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Subtle focus shadow */
+}
+
+.btn-gray {
+  background-color: #007bff; /* Blue button */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s; /* Smooth hover effect */
+}
+
+.btn-gray:hover {
+  background-color: #0069d9; /* Darker blue on hover */
+}
+
+.btn-gray i { /* Style the send icon */
+  margin-left: 5px;
+}
+
+mat-icon {
+  color: #777; /* Gray microphone icon */
+  margin-right: 10px;
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+mat-icon:hover {
+  color: #555; /* Darker gray on hover */
+}
+/* ... other styles ... */
+
+.bubbleWrapper {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start; /* Align bubbles to the top */
+  width: 100%; /* Important: Make sure the wrapper takes full width */
+}
+
+.inlineContainer {
+  display: flex;
+  align-items: flex-start;
+  max-width: 80%; /* Prevent bubbles from taking up the whole width */
+}
+
+.otherBubble {
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-left: 15px; /* Space on the left for other user's messages */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  align-self: flex-start; /* Align to the start of the container */
+}
+
+.userBubble {
+  background-color: #007bff;
+  color: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-right: 15px; /* Space on the right for current user's messages */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-left: auto; /* Push the bubble to the right */
+  align-self: flex-end; /* Align to the end of the container */
+}
+
+.inlineIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.timestamp {
+  font-size: 0.85em;
+  color: #777;
+  margin-left: 10px;
+  align-self: flex-end; /* Position timestamp at the bottom */
+}

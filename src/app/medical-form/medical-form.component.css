@@ -1,0 +1,95 @@
+
+.form-container {
+  border-radius: 12px; /* More rounded corners */
+  margin: 50px auto;
+  padding: 30px; /* Increased padding */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+  background-color: #f9f9f9; /* Softer background color */
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #28a745;
+  font-weight: 600; /* Slightly bolder title */
+}
+
+.card {
+  border: none; /* Remove default card border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+  border-radius: 8px; /* Rounded card corners */
+  overflow: hidden; /* Ensure content doesn't overflow rounded corners */
+}
+
+.card-header {
+  background-color: #ffffff; /* White card header */
+  border-bottom: 1px solid #eee; /* Subtle separator line */
+  padding: 15px 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+
+.form-label {
+  font-weight: 500;
+  color: #343a40;
+}
+
+.form-control,
+.form-select {
+  border: 1px solid #ced4da;
+  border-radius: 6px; /* Slightly more rounded inputs */
+  padding: 10px; /* Increased padding */
+}
+
+/* ... (previous CSS) ... */
+
+.form-container {
+  /* ... (previous styles) ... */
+  max-width: 900px; /* Set a maximum width for larger screens */
+}
+
+
+.card {
+  /* ... (previous styles) ... */
+  transition: transform 0.2s; /* Add a smooth transition for hover effect */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Move card slightly up on hover */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+
+
+.card-header {
+  /* ... (previous styles) ... */
+  background-color: #e9ecef; /* A slightly softer header background */
+}
+
+.form-control,
+.form-select {
+  /* ... (previous styles) ... */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Smooth transitions */
+}
+
+.form-control:focus,
+.form-select:focus {
+  /* ... (previous styles) ... */
+  border-color: #28a745; /* Green highlight on focus */
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Green shadow on focus */
+}
+
+.btn-primary {
+  /* ... (previous styles) ... */
+  transition: all 0.15s ease-in-out; /* Smooth transition for button hover/focus */
+}
+
+.btn-primary:hover {
+  /* ... (previous styles) ... */
+  transform: scale(1.02); /* Slightly scale up on hover*/
+
+}

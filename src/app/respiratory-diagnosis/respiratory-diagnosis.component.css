@@ -1,0 +1,202 @@
+/*-------------------- General Layout --------------------*/
+.image-container {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.image {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/*-------------------- Overlay Effects --------------------*/
+.blue-filter,
+.green-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.blue-filter {
+  height: 100%;
+  background-color: rgba(0, 0, 255, 0.5);
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.green-line {
+  height: 5px;
+  background-color: green;
+  opacity: 0;
+  transition: opacity 2s ease-in-out, top 2s ease-in-out;
+}
+
+.move {
+  top: 100%;
+  opacity: 1;
+}
+
+.show-blue {
+  opacity: 1;
+}
+
+/*-------------------- Scanning Effect --------------------*/
+.scanning-effect {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: rgba(0, 255, 0, 0.7);
+  animation: scanAnimation 3s linear infinite;
+}
+
+@keyframes scanAnimation {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/*-------------------- Accuracy Indicator --------------------*/
+.accuracy-container {
+  width: 150px;
+  margin: auto;
+}
+
+/*-------------------- Typing Text --------------------*/
+.typing-text {
+  display: block;
+  white-space: pre-wrap;
+  overflow: hidden;
+  border-right: 2px solid #333;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 1rem;
+  animation: typing-multiline 10s steps(80, end), blink 0.75s step-end infinite;
+}
+
+.typing-text.finished {
+  border-right: none;
+}
+
+@keyframes typing-multiline {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 500px;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #333;
+  }
+}
+
+/*-------------------- Add Button Styling --------------------*/
+.button_add {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.button_add, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button_add .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button_add .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_add .svg {
+  width: 24px;
+  stroke: #fff;
+}
+
+.button_add:hover {
+  background: #34974d;
+}
+
+.button_add:hover .button__text {
+  color: transparent;
+}
+
+.button_add:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button_add:active .button__icon {
+  background-color: #2e8644;
+}
+
+.button_add:active {
+  border: 1px solid #2e8644;
+}
+
+/*-------------------- Responsive Design --------------------*/
+@media screen and (max-width: 768px) {
+  .typing-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .accuracy-container {
+    width: 100px;
+  }
+
+  .button_add {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .button_add .button__icon {
+    display: none; /* Hide icon for small screens */
+  }
+
+  .button_add .button__text {
+    transform: none;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .typing-text {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}

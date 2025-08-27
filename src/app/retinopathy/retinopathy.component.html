@@ -1,0 +1,91 @@
+<div class="container mt-4">
+    <div class="row">
+      <mat-card style="width: 700px;"><div class="col-lg-10 mb-4 order-0">
+        <div class="card">
+          <div class="d-flex align-items-end row">
+            <div class="col-sm-7">
+              <div class="card-body">
+                <h5 class="card-title text-primary">Welcome to Retinopathy diagnosis 👁️ </h5>
+                <p class="mb-4">Upload the image to analyze potential retinopathy diseases.</p>
+                <button class="btn btn-bg-dark btn-outline-primary" (click)="openModal()">Click Here</button>
+              </div>
+            </div>
+            <div class="col-sm-5 text-center text-sm-left">
+              <div class="card-body pb-0 px-0 px-md-4">
+                <img src="assets/images/retinopathy.png" height="170" alt="retinopathy Illustration">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></mat-card>
+  
+    </div>
+  <br>
+  <br>
+  <div class="container mt-4">
+    <div class="row">
+      <mat-card class="p-3">
+        <div class="d-flex align-items-center">
+          <div class="col-sm-6">
+            <h5 class="text-primary">The Image here  👇</h5>
+            <div class="image-container scanning-effect">
+              <img *ngIf="previewImage" [src]="previewImage" width="400" class="image rounded">
+              <div class="scan-line" *ngIf="isScanning"></div>
+            </div>
+            <br>
+            <br>
+            <button type="button" class="btn btn-success mt-3" (click)="startAnalysis()">Start Analysis</button>
+          </div>
+          <div class="col-sm-6 text-center">
+            <h5 class="text-primary">Scanning progress</h5>
+            <div class="accuracy-container">
+              <svg width="150" height="150" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="#ddd" stroke-width="8" fill="none" />
+                <circle cx="50" cy="50" r="40" stroke="#4caf50" stroke-width="8" fill="none"
+                        stroke-dasharray="251.2" [attr.stroke-dashoffset]="accuracyOffset"
+                        stroke-linecap="round" transform="rotate(-90 50 50)" />
+                <text x="50" y="55" font-size="16" text-anchor="middle" fill="#000">{{accuracy}}%</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  
+    <mat-card class="mt-4 p-3" *ngIf="showResult">
+      <h2 class="text-danger" *ngIf="class">{{ severe }}</h2>
+      <p [ngClass]="{'typing-text': displayedText.length > 0}">
+        {{ displayedText }}
+      </p>
+      <button type="button" class="button_add" (click)="saveDiagnosis()">
+        <span class="button__text">Add Item</span>
+        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+      </button>
+    </mat-card>
+    
+  
+  
+  </div>
+  
+  <!-- Modal for Image Upload -->
+  <div id="uploadModal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upload The image </h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <input type="file" class="form-control" (change)="onFileSelected($event)">
+          <div class="mt-3 text-center">
+            <img *ngIf="previewImage" [src]="previewImage" width="300" class="rounded">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+          <button class="btn btn-primary" (click)="closeModal()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

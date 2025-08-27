@@ -1,0 +1,133 @@
+<div class="file-upload-container" *ngIf="!extractedData || extractedData.length === 0">
+  <ng-container *ngIf="!loading; else loadingTemplate">
+    <div class="upload-box">
+      <label class="custom-file-upload">
+        <input type="file" (change)="onFileSelected($event)" *ngIf="!loading" />
+        Choose File
+      </label>
+
+      <button class="extract-button" (click)="extract_data()">
+        Extract
+      </button>
+    </div>
+    
+    <!-- Display notification message if available -->
+    <div class="alert alert-warning mt-2" *ngIf="!showUploadBox && notificationMessage">
+      {{ notificationMessage }}
+    </div>
+    
+    <!-- Display selected file name -->
+    <div class="file-name" *ngIf="selectedFileName">
+      📄 {{ selectedFileName }}
+    </div>
+  </ng-container>
+
+  <!-- Loading state template -->
+  <ng-template #loadingTemplate>
+    <div class="loading-box">
+      <mat-spinner [diameter]="50" color="primary"></mat-spinner>
+      <div class="loading-text">Processing, please wait...</div>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Vue d’ensemble Section (Appointments & Consultations) -->
+
+    <div class="container">
+        <!-- Header Section -->
+   
+
+        <div class="cards-wrapper">
+            <!-- Next Appointment Card -->
+            <div class="card appointment-card">
+                <h2>Next Appointment</h2>
+                <p><strong>Date:</strong> 08/25/2025</p>
+                <p><strong>Time:</strong> 10:00 AM</p>
+                <p><strong>Doctor:</strong> Dr. Sarah Jameson</p>
+                <p><strong>Location:</strong> City Health Clinic</p>
+            </div>
+            <!-- Health Metrics Card -->
+            <div class="card health-metrics-card">
+                <h2>Health Metrics</h2>
+                <div class="metric">
+                    <h3>BMI</h3>
+                    <p><strong>Category:</strong> Normal</p>
+                    <p><strong>Value:</strong> 22.5</p>
+                    <p>Normal weight range: 18.5 - 24.9</p>
+                </div>
+
+                <div class="metric">
+                    <h3>Blood Pressure</h3>
+                    <p><strong>Systolic:</strong> 0 mmHg</p>
+                    <p><strong>Diastolic:</strong> 0 mmHg</p>
+                    <p><i>Data unavailable</i></p>
+                </div>
+
+                <div class="metric">
+                    <h3>Blood Type</h3>
+                    <p><strong>Type:</strong> A+</p>
+                </div>
+            </div>
+
+            <!-- Prescriptions Card -->
+            <div class="card prescriptions-card">
+                <h2>View Prescriptions</h2>
+                <div class="prescription-item">
+                    <p><strong>Medication:</strong> Ibuprofen</p>
+                    <p><strong>Dosage:</strong> 200mg</p>
+                    <p><strong>Frequency:</strong> Twice a day after meals</p>
+                    <p><strong>Start Date:</strong> 08/10/2025</p>
+                </div>
+                <div class="prescription-item">
+                    <p><strong>Medication:</strong> Paracetamol</p>
+                    <p><strong>Dosage:</strong> 500mg</p>
+                    <p><strong>Frequency:</strong> Once a day</p>
+                    <p><strong>Start Date:</strong> 08/05/2025</p>
+                </div>
+            </div>
+        </div>
+
+  
+
+
+
+<!-- Blood Sugar Section -->
+<div class="container mt-5">
+  <div class="row">
+    <div class="blood-sugar-section">
+      <ng-container *ngIf="loading; else showBloodSugar">
+        <div class="loading-state">
+          <mat-spinner [diameter]="50" color="primary"></mat-spinner>
+          <div>Loading Blood Sugar Data...</div>
+        </div>
+      </ng-container>
+
+      <ng-template #showBloodSugar>
+        <div *ngIf="bloodSugarCharts.length > 0; else noData">
+          <div class="chart-container row">
+            <div *ngFor="let chart of bloodSugarCharts; let i = index" class="col-12 col-md-4 mb-4">
+              <apx-chart 
+                [series]="chart.series" 
+                [chart]="chart.chart"
+                [xaxis]="chart.xaxis"
+                [stroke]="chart.stroke"
+                [title]="chart.title"
+                [dataLabels]="chart.dataLabels"
+                [fill]="chart.fill"
+                [yaxis]="chart.yaxis"
+                [tooltip]="chart.tooltip"
+                [plotOptions]="chart.plotOptions">
+              </apx-chart>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #noData>
+          <div class="no-data-message">No Data Available...</div>
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Button -->

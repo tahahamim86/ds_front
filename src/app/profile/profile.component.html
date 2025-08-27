@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="profile-container">
+
+    <!-- Header -->
+    <div class="header">
+      <!-- Profile Image Section -->
+      <div class="profile-image">
+        <img [src]="profileImage" alt="Photo de profil">
+        <div class="overlay">
+          <button class="upload-btn" (click)="triggerFileInput()">
+            <i class='bx bx-camera'></i>
+          </button>
+          <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
+        </div>
+      </div>
+
+      <!-- Profile Info Section -->
+      <div class="profile-info">
+        <h2>{{ profileData[0].value || 'N/A' }}</h2>
+        <p class="age" *ngIf="age !== null">Age: {{ age }}</p>
+        <p class="section-title">Informations Médicales</p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    
+
+    <!-- Profile Information Grid -->
+    <div class="info-grid">
+      <div class="info-item" *ngFor="let item of profileData">
+        <div class="input-group">
+          <ng-container [ngSwitch]="item.key">
+
+      <select *ngSwitchCase="'gender'" [(ngModel)]="item.value" [disabled]="!isEditing[item.key]">
+  <option value="" disabled selected hidden>Select gender</option>
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+  <option value="other">Other</option>
+</select>
+
+
+            <input *ngSwitchCase="'birthday'" type="date" [(ngModel)]="item.value" [readonly]="!isEditing[item.key]" placeholder="{{item.key}}">
+            <input *ngSwitchCase="'contactInfo'" type="email" [(ngModel)]="item.value" [readonly]="!isEditing[item.key]" placeholder="{{item.key}}">
+            <input *ngSwitchDefault [type]="item.type || 'text'" [(ngModel)]="item.value" [readonly]="!isEditing[item.key]" placeholder="{{item.key}}">
+
+          </ng-container>
+          <button class="edit-btn" (click)="toggleEdit(item.key)">
+            <i class='bx bx-edit'></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="update-btn" *ngIf="profileExists && showUpdateButton" (click)="updateProfile()">
+        <i class='bx bx-edit'></i> Mettre à jour
+      </button>
+      <button class="update-btn" *ngIf="!profileExists" (click)="createProfile()">
+        <i class='bx bx-plus'></i> Créer Profil
+      </button>
+      <button class="delete-btn" *ngIf="profileExists" (click)="deleteProfile()">
+        <i class='bx bx-trash'></i> Supprimer
+      </button>
+    </div>
+  </div>
+</div>

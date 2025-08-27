@@ -1,0 +1,35 @@
+<div class="login-container">
+  <form (ngSubmit)="login()">
+    <h3><img src="assets/images/DoctorSinalogo.png" alt="Logo" width="250px"></h3>
+
+    <h3 style="font-weight: bolder;">Welcome back</h3>
+
+    <label for="email">Email:</label>
+    <input type="email" placeholder="Email" id="email" [(ngModel)]="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" placeholder="Password" id="password" [(ngModel)]="password" name="password" required>
+
+    <button type="submit" class="btn btn-success" [disabled]="isLoading">
+      {{ isLoading ? 'Logging in...' : 'Log In' }}
+    </button>
+
+    <p class="error-message" *ngIf="message">{{ message }}</p>
+
+    <a href="#" style="color:#023212">Did you forget your password? Click here</a>
+    <a routerLink="/register">Don't have an account? <span style="color: green;">Sign Up</span></a>
+
+    <div class="hr-container">
+      <hr>
+      <span class="text">or</span>
+      <hr>
+    </div>
+
+    <button class="google btn">
+      <i class="bx bxl-google"></i> &nbsp;Continue with Google
+    </button>
+    <button class="microsoft btn">
+      <i class="bx bxl-microsoft"></i> &nbsp;Continue with Microsoft
+    </button>
+  </form>
+</div>

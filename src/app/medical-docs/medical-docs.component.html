@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <h1 class="text-center">Medical Document Folders</h1>
+
+  <!-- Folder Cards -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="folder-card" (click)="navigateToFolder('Scanned Images')">
+        <div class="folder-icon">
+          <i class="fas fa-folder-open"></i>
+        </div>
+        <div class="folder-title">Scanned Images</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="folder-card" (click)="navigateToFolder('Ordonances')">
+        <div class="folder-icon">
+          <i class="fas fa-folder-open"></i>
+        </div>
+        <div class="folder-title">Biochimie docs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Document Table -->
+  <div *ngIf="currentFolder" class="mt-5">
+    <h2 class="text-center">{{ currentFolder }} Details</h2>
+    <mat-table [dataSource]="documents">
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+        <mat-cell *matCellDef="let document">
+          <img [src]="document.imageUrl" alt="Document Image" width="50" />
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="show">
+        <mat-header-cell *matHeaderCellDef> Show </mat-header-cell>
+        <mat-cell *matCellDef="let document">
+          <button mat-raised-button color="primary" (click)="showImage(document)">Show</button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let document">
+          <button mat-raised-button color="warn" (click)="openDeleteModal(document)">Delete</button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Date Added </mat-header-cell>
+        <mat-cell *matCellDef="let document">{{ document.dateAdded | date }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+/* === Sidebar Styles (Modern Teal) === */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(180deg, #0E2517 0%, #006D6F 100%); /* Gradient Teal */
+    padding: 20px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 0 20px 20px 0;
+}
+
+/* Logo */
+.logo-img {
+    width: 70px;
+    margin: 10px auto 25px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+/* Navigation */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 10px 0;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #D8F3DC;
+    font-size: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+    transform: translateX(5px);
+}
+
+/* Active link */
+.nav-links .active,
+.nav-links a.router-link-active {
+    background: #1E9D8B;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 150, 136, 0.4);
+}
+
+/* Submenu */
+.sub-menu {
+    display: none;
+    padding-left: 15px;
+    margin-top: 8px;
+    border-left: 2px solid rgba(255,255,255,0.2);
+}
+
+.sub-menu.show {
+    display: block;
+}
+
+.sub-menu a {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #CDEAE7;
+}
+
+.sub-menu a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+}
+
+/* Arrow */
+.arrow {
+    font-size: 18px;
+    color: #CDEAE7;
+    transition: transform 0.3s ease;
+}
+.dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+/* Profile Section */
+.profile-details {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.08);
+    padding: 8px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.profile-details:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* Profile picture smaller */
+.profile-content {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #A8D5BA;
+    border: 2px solid #fff;
+}
+
+/* Name & job compact */
+.name-job {
+    flex-grow: 1;
+    padding-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-name {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.job {
+    color: #CDEAE7;
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+/* Logout Icon smaller and aligned */
+.profile-details .bx-log-out {
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.profile-details .bx-log-out:hover {
+    color: #FF6B6B;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 210px;
+    }
+    .logo-img {
+        width: 150px;
+    }
+}
+@media (max-width: 500px) {
+    .sidebar {
+        width: 70px;
+        padding: 15px 10px;
+    }
+    .logo-img {
+        display: none;
+    }
+    .link-name {
+        display: none;
+    }
+}

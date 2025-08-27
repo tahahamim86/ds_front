@@ -1,0 +1,66 @@
+<div class="chat-wrapper">
+
+  <!-- Sidebar: Chat history -->
+  <div class="chat-sidebar">
+    <div class="sidebar-header">
+      <h4>Chats</h4>
+      <button class="btn-new" (click)="startNewChat()">+ New Chat</button>
+    </div>
+
+    <ul class="chat-history">
+      <li *ngFor="let chat of chatHistory; let i = index" 
+          [ngClass]="{'active-chat': i === activeChatIndex}" (click)="selectChat(i)">
+        <span class="chat-title">{{ chat.title || 'Conversation ' + (i + 1) }}</span>
+        <button class="btn-delete" (click)="deleteChat(i); $event.stopPropagation()">🗑️</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Chat container -->
+  <div class="chat-container">
+    <div *ngIf="chatHistory.length === 0" class="empty-chat">
+      <p>Select a conversation or start a new chat to begin.</p>
+    </div>
+
+    <div *ngIf="chatHistory.length > 0">
+      <div class="chat-header">
+        <img src="assets/images/doctor-2359417.png" alt="DoctorLy AI" />
+        <h4>DoctorLy AI Assistant</h4>
+      </div>
+
+      <div class="message-container" #messageContainer>
+        <div *ngFor="let msg of activeChatMessages" 
+             [ngClass]="{'user-message': msg.user || msg.audioUrl, 'bot-message': msg.bot}">
+          
+          <!-- User / Audio Message -->
+          <div *ngIf="msg.user || msg.audioUrl" class="message-content user-message">
+            <ng-container *ngIf="msg.audioUrl; else textMessage">
+              <audio controls>
+                <source [src]="msg.audioUrl" type="audio/webm" />
+                Your browser does not support audio.
+              </audio>
+            </ng-container>
+            <ng-template #textMessage>{{ msg.user }}</ng-template>
+            <span class="message-time">{{ msg.time }}</span>
+          </div>
+
+          <!-- Bot Message -->
+          <div *ngIf="msg.bot" class="message-content bot-message">
+            {{ msg.bot }}
+            <span class="message-time">{{ msg.time }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <input [(ngModel)]="userInput" placeholder="Type a message..." (keyup.enter)="sendMessage()" />
+        <button (dblclick)="toggleVoiceRecording()">
+          <mat-icon>{{ isRecording ? 'stop' : 'mic' }}</mat-icon>
+        </button>
+        <button (click)="sendMessage()">
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

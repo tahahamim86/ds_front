@@ -1,0 +1,79 @@
+<nav class="navbar">
+  <div class="navbar-left">
+
+  </div>
+<!--
+  <div class="navbar-center">
+    <input type="text" class="form-control" placeholder="Search...">
+  </div>
+-->
+  <div class="navbar-right">
+    <button mat-icon-button (click)="toggleSideBar()">
+      <mat-icon *ngIf="!openbar" style="color:green">fullscreen</mat-icon>
+      <mat-icon *ngIf="openbar" style="color:red">fullscreen_exit</mat-icon>
+    </button>
+       <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+      <mat-icon>notifications</mat-icon>
+      <span *ngIf="!showUploadBox" class="notification-badge">{{ daysLeft }}</span>
+    </button>
+
+    <!-- Profile image and menu -->
+
+    <mat-menu #notificationMenu="matMenu">
+      <button mat-menu-item disabled>
+        <mat-icon>info</mat-icon>
+        <span *ngIf="notificationMessage">{{ notificationMessage }}</span>
+      </button>
+    </mat-menu>
+    <a [matMenuTriggerFor]="menu">
+      <img [src]="profileImage" width="25px" height="35px" alt="User Profile Image">
+    </a>
+    <div class="menu">
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item routerLink="/profile">
+          <a href="">
+            <img [src]="profileImage" width="25px" height="45px">&nbsp; &nbsp;{{ profileName || 'User' }}
+          </a>
+        </button>
+        <hr>
+        <button mat-menu-item routerLink="/profile">
+          <mat-icon>perm_identity</mat-icon>
+          Profile
+        </button>
+        <button mat-menu-item routerLink="/password-reset">
+          <mat-icon>settings</mat-icon> Settings
+        </button>
+        <hr>
+        <button mat-menu-item *ngIf="!loggedIn" (click)="logout($event)">
+          <mat-icon>exit_to_app</mat-icon> Log out
+        </button>
+      </mat-menu></div>
+  </div>
+</nav>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <button type="button" class="btn-close btn btn-outline-danger" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body transparent-background">
+    <form>
+      <div class="mb-3">
+        <div class="input-group">
+          <input
+            id="dateOfBirth"
+            class="form-control"
+            placeholder="type ..."
+            name="dp"
+            ngbDatepicker
+            #dp="ngbDatepicker"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">
+      <i class="bx bx-search"></i> Search
+    </button>
+  </div>
+</ng-template>

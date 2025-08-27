@@ -1,0 +1,18 @@
+
+
+<div class="modal-backdrop"  (click)="closeModal()">
+  <div   (click)="$event.stopPropagation()" id="modal">
+    <button class="close-btn" (click)="closeModal()">×</button>
+
+    <h3>{{ hasToken ? 'Enter Access Token' : 'Create New Access Token' }}</h3>
+    <input [(ngModel)]="token" placeholder="Enter token" class="form-control"/>
+
+    <p *ngIf="!hasToken" class="warning-message">
+      This token will be added only once. Please save it. If you lose it, you will lose access to your medical records.
+    </p>
+<br>
+    <button (click)="handleTokenAction()" class="btn-primary">
+      {{ hasToken ? 'Submit' : 'Create Token' }}
+    </button>
+  </div>
+</div>

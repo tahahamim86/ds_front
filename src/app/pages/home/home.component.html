@@ -1,0 +1,150 @@
+<div class="sidebar" [ngStyle]="{'background-color': color}">
+    <!-- Logo Section -->
+    <div class="logo">
+        <img src="assets/images/logods.png" alt="DoctorSina Logo" *ngIf="!istext" class="logo-img" />
+    </div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+        <!-- MediHub -->
+        <li>
+            <a [routerLink]="['/']" routerLinkActive="router-link-active">
+                <i class="bx bx-grid-alt"></i>
+                <span class="link-name">MediHub</span>
+            </a>
+        </li>
+
+        <!-- DoctorLY Chat -->
+        <li>
+            <a [routerLink]="['/chat_tech']">
+                <i class="bx bx-brain"></i>
+                <span class="link-name">DoctorLY</span>
+            </a>
+        </li>
+
+           <li>
+            <a [routerLink]="['/appointement']">
+                <i class="bx bx-calendar"></i>
+                <span class="link-name">Appointement</span>
+            </a>
+        </li>
+   <li>
+            <a [routerLink]="['/book-appointment']">
+                <i class="bx bx-time"></i>
+                <span class="link-name">Book appointement</span>
+            </a>
+        </li>
+         <li>
+            <a [routerLink]="['/messenger-w-doc']">
+                <i class="bx bx-chat"></i>
+                <span class="link-name">Conversation</span>
+            </a>
+        </li>
+        <!-- Diagnosis Dropdown -->
+        <li class="dropdown">
+            <div class="iocn-link" (click)="toggleDiagnosisSubMenu()" style="display: flex; align-items: center; justify-content: space-between;">
+                <a href="#" style="display: flex; align-items: center; gap: 8px;">
+                    <i class="bx bx-collection"></i>
+                    <span class="link-name">Diagnosis</span>
+                </a>
+                <i class="bx bxs-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu" [ngClass]="{'show': isDiagnosisOpen}">
+                <li>
+                    <a routerLink="/respiratory-diagnosis">
+                        <!-- Small Lung Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="diagnosis-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C10 2 6 4 6 10v4h12v-4c0-6-4-8-6-8z"/>
+                            <path d="M6 14h12v4H6z"/>
+                        </svg>
+                        <span>Respiratory</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/brain-diagnosis">
+                        <!-- Small Brain Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="diagnosis-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8 2 5 5 5 9c0 4 3 7 7 7s7-3 7-7c0-4-3-7-7-7z"/>
+                            <path d="M12 16c-3.31 0-6 2.69-6 6h12c0-3.31-2.69-6-6-6z"/>
+                        </svg>
+                        <span>Brain Tumor</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/retinopathy-diagnosis">
+                        <!-- Small Eye Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="diagnosis-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <span>Retinopathy</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/cardiology-diagnosis">
+                        <!-- Small Heart Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="diagnosis-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span>Cardiology</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Medical Folders -->
+        <li>
+            <a href="#" (click)="openTokenPopup($event)">
+                <i class="bx bx-book-alt"></i>
+                <span class="link-name">Medical Folders</span>
+            </a>
+        </li>
+
+        <!-- Medical Form -->
+        <li>
+            <a routerLink="/medical-form">
+                <i class="bx bx-pie-chart-alt-2"></i>
+                <span class="link-name">Medical Form</span>
+            </a>
+        </li>
+
+        <!-- History -->
+        <li>
+            <a href="#">
+                <i class="bx bx-history"></i>
+                <span class="link-name">History</span>
+            </a>
+        </li>
+
+        <!-- Settings -->
+        <li>
+            <a routerLink="password-reset">
+                <i class="bx bx-cog"></i>
+                <span class="link-name">Settings</span>
+            </a>
+        </li>
+
+        <!-- Profile Section -->
+      <!-- Profile Section -->
+<li>
+    <div class="profile-details">
+        <div class="profile-content"></div>
+        <div class="name-job">
+            <div class="profile-name">John Doe</div>
+            <div class="job">Doctor</div>
+        </div>
+        <i class="bx bx-log-out"></i>
+    </div>
+</li>
+
+    </ul>
+</div>
+
+<!-- Main Content Section -->
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bxs-caret-left-circle"></i>
+    </div>
+</section>
+
+<app-token-modal *ngIf="showModal" (close)="showModal = false"></app-token-modal>

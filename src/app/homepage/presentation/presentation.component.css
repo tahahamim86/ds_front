@@ -1,0 +1,7 @@
+    .feature-box {
+    transition: all 0.3s ease-in-out;
+}
+.feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}

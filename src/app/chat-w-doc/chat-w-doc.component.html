@@ -1,0 +1,56 @@
+<div class="chat-app">
+  <!-- Sidebar: Doctors List -->
+  <div class="doctors-list">
+    <div 
+      class="doctor-item" 
+      *ngFor="let doc of doctors" 
+      [ngClass]="{'active': selectedDoctor === doc}" 
+      (click)="selectDoctor(doc)">
+      <img [src]="doc.photo" alt="{{doc.name}}">
+      <div class="doctor-info">
+        <h4>{{doc.name}}</h4>
+        <p>{{doc.specialty}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Window -->
+  <div class="chat-window" *ngIf="selectedDoctor">
+    <div class="chat-header">
+      <img [src]="selectedDoctor.photo" alt="{{selectedDoctor.name}}">
+      <div>
+        <h3>{{selectedDoctor.name}}</h3>
+        <p>{{selectedDoctor.specialty}}</p>
+      </div>
+    </div>
+
+    <div class="chat-messages" #messagesContainer>
+      <div 
+        *ngFor="let msg of messages" 
+        [ngClass]="{'message-sent': msg.sender==='user', 'message-received': msg.sender==='doctor'}" 
+        class="message">
+        <div *ngIf="msg.type==='text'">{{msg.content}}</div>
+        <div *ngIf="msg.type==='file'">
+          <a [href]="msg.fileUrl" target="_blank">{{msg.fileName}}</a>
+        </div>
+        <div *ngIf="msg.type==='voice'">
+          <audio [src]="msg.fileUrl" controls></audio>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" [(ngModel)]="newMessage" placeholder="Écrire un message..." (keydown.enter)="sendMessage()">
+      <input type="file" #fileInput (change)="sendFile($event)" style="display:none">
+      <button (click)="fileInput.click()"><i class="bx bx-paperclip"></i></button>
+      <button (click)="startRecording()" *ngIf="!isRecording"><i class="bx bx-microphone"></i></button>
+      <button (click)="stopRecording()" *ngIf="isRecording"><i class="bx bx-stop-circle"></i></button>
+      <button (click)="sendMessage()"><i class="bx bx-send"></i></button>
+    </div>
+  </div>
+
+  <!-- Placeholder if no doctor selected -->
+  <div class="chat-placeholder" *ngIf="!selectedDoctor">
+    <p>Veuillez sélectionner un médecin pour commencer la conversation</p>
+  </div>
+</div>

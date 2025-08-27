@@ -1,0 +1,96 @@
+:host{
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: white;
+  }
+mat-drawer{
+  box-shadow: none; /* Removes the shadow lines */
+  border: none;     /* Removes any border */
+    width:300px;
+background-color: transparent;
+}
+mat-drawer-container{
+    height:200%;
+    background-color: white;
+}
+mat-drawer-content{
+    padding: 16px;
+}
+/* General Styles */
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Drawer Styles */
+mat-drawer {
+  box-shadow: none;
+  border: none;
+  width: 300px;
+  background-color: transparent;
+}
+
+mat-drawer-container {
+  height: 100%;
+  background-color: white;
+}
+
+mat-drawer-content {
+  padding: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+/* Button Styling */
+.dark-mode-toggle {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(45deg, #388e3c, #4caf50);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover Effect */
+.dark-mode-toggle:hover {
+  background: linear-gradient(45deg, #2e7d32, #43a047);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Icon Size */
+.dark-mode-toggle i {
+  font-size: 24px;
+}
+
+/* Dark Mode Colors */
+.dark mat-drawer-container {
+  background-color: #1e1e1e !important;
+}
+
+.dark mat-drawer {
+  background-color: #333 !important;
+}
+
+.dark mat-drawer-content {
+  background-color: #222 !important;
+  color: white !important;
+}
