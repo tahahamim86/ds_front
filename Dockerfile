@@ -14,7 +14,8 @@ WORKDIR /usr/share/nginx/html
 
 RUN rm -rf ./*
 
-COPY --from=build /app/dist/doctorsina ./
+# ✅ Replace with the actual dist folder name
+COPY --from=build /app/dist/DoctorSinaWeb ./
 
 EXPOSE 80
 
