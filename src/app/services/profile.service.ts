@@ -2,26 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthServiceService } from './auth-service.service';  // Import your AuthServiceService
+import { AuthServiceService } from './auth-service.service';
+import { environment } from '../environments/environment';  // Import environment
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  private apiUrl = `http://127.0.0.1:9300/api/profile`;  // Change to your API URL
+  private apiUrl = `${environment.apiUrl}/profile`;  // Use environment API URL
 
   constructor(private http: HttpClient, private authService: AuthServiceService) {}
 
   private getAuthHeaders(): HttpHeaders {
-    const token = this.authService.getToken();  // Get token from AuthServiceService
+    const token = this.authService.getToken();
     return token
       ? new HttpHeaders({ 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' })
       : new HttpHeaders();
   }
 
   getProfile(): Observable<any> {
-    const email = this.authService.getUserId();  // Get user email (ID) from the JWT token via AuthServiceService
-
+    const email = this.authService.getUserId();
     if (!email) {
       return throwError(() => new Error('User email not found in token'));
     }
@@ -34,7 +34,6 @@ export class ProfileService {
 
   updateProfile(updatedProfile: any, imageFile?: File | null): Observable<any> {
     const email = this.authService.getUserId();
-
     if (!email) {
       return throwError(() => new Error('User email not found in token'));
     }
@@ -53,18 +52,21 @@ export class ProfileService {
     }
 
     console.log('FormData contents (updateProfile) before request:');
-    formData.forEach((value, key) => {
-      console.log(key, value);
+    for (const pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken() ?? ''}`
+      // Note: Do NOT set 'Content-Type' when sending FormData; the browser will set it.
     });
 
-    return this.http.put<any>(`${this.apiUrl}/update/${email}`, formData).pipe( // Removed { headers }
+    return this.http.put<any>(`${this.apiUrl}/update/${email}`, formData, { headers }).pipe(
       catchError(this.handleError)
     );
   }
-  createProfile(newProfile: any, imageFile?: File | null): Observable<any> {
-    // Consider removing or adjusting headers for FormData
-    // const headers = this.getAuthHeaders();
 
+  createProfile(newProfile: any, imageFile?: File | null): Observable<any> {
     const formData = new FormData();
 
     formData.append('fullName', newProfile.fullName);
@@ -78,26 +80,29 @@ export class ProfileService {
     formData.append('martialstatus', newProfile.martialstatus);
     formData.append('description_martialstatus', newProfile.description_martialstatus);
     formData.append('nationality', newProfile.nationality);
-    formData.append('email', newProfile.email);   // Add email because controller requires it
+    formData.append('email', newProfile.email);
 
     if (imageFile) {
       formData.append('image', imageFile, imageFile.name);
     }
 
-    console.log('FormData contents before request:'); // Logging FormData contents
-    formData.forEach((value, key) => {
-      console.log(key, value);
+    console.log('FormData contents (createProfile) before request:');
+    for (const pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken() ?? ''}`
+      // 'Content-Type' omitted intentionally for FormData
     });
 
-    // Sending FormData without explicit 'Content-Type' header
-    return this.http.post<any>(`${this.apiUrl}/add`, formData).pipe(
+    return this.http.post<any>(`${this.apiUrl}/add`, formData, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
   deleteProfile(): Observable<any> {
-    const email = this.authService.getUserId();  // Get user email (ID) from the JWT token via AuthServiceService
-
+    const email = this.authService.getUserId();
     if (!email) {
       return throwError(() => new Error('User email not found in token'));
     }
@@ -109,9 +114,9 @@ export class ProfileService {
   }
 
   private handleError(error: any): Observable<any> {
-    console.error('An error occurred:', error);  // Enhanced error logging
+    console.error('An error occurred:', error);
     let errorMessage = 'Unknown error occurred. Please try again later.';
-    
+
     if (error.error instanceof ErrorEvent) {
       // Client-side or network error
       errorMessage = `Network error: ${error.error.message}`;
@@ -123,7 +128,7 @@ export class ProfileService {
       errorMessage = 'Server error: Please contact support.';
     }
 
-    console.log('Error Message:', errorMessage);  // Debugging log
+    console.log('Error Message:', errorMessage);
     return throwError(() => new Error(errorMessage));
   }
 }
