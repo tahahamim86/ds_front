@@ -43,20 +43,18 @@ export class AuthServiceService {
     };
 
     // Adjust responseType as needed (JSON or text)
-    return this.http.post<{ jwt: string }>(this.baseUrl, userData, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      // responseType: 'text' // <-- Uncomment if backend returns plain text token
-    }).pipe(
-      tap(response => {
-        if (response && 'jwt' in response) {
-          this.storeToken(response.jwt);
-        } else if (typeof response === 'string') {
-          // If response is a plain token string (text)
-          this.storeToken(response);
-        }
-      }),
-      catchError(this.handleError)
-    );
+    return this.http.post(this.baseUrl, userData, {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  responseType: 'text'  // <-- This tells Angular the response is plain text
+}).pipe(
+  tap(response => {
+    // response here is a string
+    this.storeToken(response);  // Save token if it's a token
+    console.log('Register response:', response);
+  }),
+  catchError(this.handleError)
+);
+
   }
 
   /**
@@ -181,4 +179,5 @@ export class AuthServiceService {
     return null;
   }
 }
+
 
