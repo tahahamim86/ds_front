@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthServiceService } from './auth-service.service';
-import { environment } from 'environment';  // Import environment
+import { environment } from 'environment';  // Correct relative path
 
 @Injectable({
   providedIn: 'root'
@@ -52,13 +52,13 @@ export class ProfileService {
     }
 
     console.log('FormData contents (updateProfile) before request:');
-    for (const pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
+    formData.forEach((value, key) => {
+      console.log(key, value);
+    });
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken() ?? ''}`
-      // Note: Do NOT set 'Content-Type' when sending FormData; the browser will set it.
+      // Note: Do NOT set 'Content-Type' when sending FormData; browser will set it.
     });
 
     return this.http.put<any>(`${this.apiUrl}/update/${email}`, formData, { headers }).pipe(
@@ -87,9 +87,9 @@ export class ProfileService {
     }
 
     console.log('FormData contents (createProfile) before request:');
-    for (const pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
+    formData.forEach((value, key) => {
+      console.log(key, value);
+    });
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getToken() ?? ''}`
