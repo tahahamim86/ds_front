@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';  // Import environment
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  private baseUrl = 'http://127.0.0.1:9300/api/v1/registration';
+  private baseUrl = `${environment.apiUrl}/v1/registration`;  // Use environment API URL
   private tokenKey = 'auth_token';
 
   constructor(private http: HttpClient) {}
@@ -16,13 +17,13 @@ export class AuthServiceService {
    * Logs in the user and stores JWT token in localStorage.
    */
   login(email: string, password: string): Observable<any> {
-    return this.http.post<{ jwt: string }>(this.baseUrl + '/authenticate', { email, password }, {
+    return this.http.post<{ jwt: string }>(`${this.baseUrl}/authenticate`, { email, password }, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }).pipe(
       tap(response => {
         if (response.jwt) {
           this.storeToken(response.jwt);
-          console.log('Stored JWT Token:', response.jwt);  // Log the JWT to confirm it's stored
+          console.log('Stored JWT Token:', response.jwt);
         }
       }),
       catchError(this.handleError)
@@ -32,29 +33,31 @@ export class AuthServiceService {
   /**
    * Registers a new user and stores JWT token in localStorage.
    */
-register(email: string, password: string, firstName: string, lastName: string, role: string): Observable<string> {
-  const registerUrl = `${this.baseUrl}`;
-  const userData = {
-    email,
-    password,
-    First_name: firstName,
-    Last_name: lastName,
-    app_user_role: role
-  };
+  register(email: string, password: string, firstName: string, lastName: string, role: string): Observable<any> {
+    const userData = {
+      email,
+      password,
+      First_name: firstName,
+      Last_name: lastName,
+      app_user_role: role
+    };
 
-  return this.http.post(registerUrl, userData, {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    responseType: 'text' // <-- Tells Angular not to expect JSON
-  }).pipe(
-    tap(token => {
-      if (token) {
-        localStorage.setItem(this.tokenKey, token);  // Save UUID or token
-      }
-    }),
-    catchError(this.handleError)
-  );
-}
-
+    // Adjust responseType as needed (JSON or text)
+    return this.http.post<{ jwt: string }>(this.baseUrl, userData, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      // responseType: 'text' // <-- Uncomment if backend returns plain text token
+    }).pipe(
+      tap(response => {
+        if (response && 'jwt' in response) {
+          this.storeToken(response.jwt);
+        } else if (typeof response === 'string') {
+          // If response is a plain token string (text)
+          this.storeToken(response);
+        }
+      }),
+      catchError(this.handleError)
+    );
+  }
 
   /**
    * Handles authentication errors.
@@ -80,7 +83,7 @@ register(email: string, password: string, firstName: string, lastName: string, r
    * Logs out the user by removing the token.
    */
   logout(): void {
-    localStorage.removeItem(this.tokenKey);  // Remove the token from localStorage
+    localStorage.removeItem(this.tokenKey);
     console.log('Logged out successfully');
   }
 
@@ -96,7 +99,6 @@ register(email: string, password: string, firstName: string, lastName: string, r
    * Retrieves the stored JWT token.
    */
   getToken(): string | null {
-    console.log(this.tokenKey)
     return localStorage.getItem(this.tokenKey);
   }
 
@@ -116,7 +118,7 @@ register(email: string, password: string, firstName: string, lastName: string, r
       return !payload.exp || Date.now() >= payload.exp * 1000;
     } catch (e) {
       console.warn('Invalid Token:', e);
-      return true;  // Treat invalid token as expired
+      return true;
     }
   }
 
@@ -125,7 +127,7 @@ register(email: string, password: string, firstName: string, lastName: string, r
    */
   private decodeToken(token: string): any {
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));  // Decode the base64 payload
+      const payload = JSON.parse(atob(token.split('.')[1]));
       return payload;
     } catch (e) {
       console.warn('Error decoding token:', e);
@@ -163,26 +165,19 @@ register(email: string, password: string, firstName: string, lastName: string, r
   }
 
   /**
-   * Retrieves the user ID from the JWT token.
+   * Retrieves the user ID (or email) from the JWT token.
    */
-/**
- * Retrieves the user ID (or email) from the JWT token.
- */
-getUserId(): string | null {
-  const token = this.getToken();
-  if (token) {
-    const decodedToken = this.decodeToken(token);
-    console.log('Decoded Token:', decodedToken);  // Log the decoded token to inspect the payload
-
-    // Check if the decoded token has 'sub' (subject) field, which seems to be the user's email
-    if (decodedToken && decodedToken.sub) {
-      return decodedToken.sub;  // Use 'sub' as the user identifier (email in this case)
-    } else {
-      console.warn('No userId (sub) found in the token payload');
-      return null;
+  getUserId(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.decodeToken(token);
+      if (decodedToken && decodedToken.sub) {
+        return decodedToken.sub;
+      } else {
+        console.warn('No userId (sub) found in the token payload');
+        return null;
+      }
     }
+    return null;
   }
-  return null;
-}
-
 }
