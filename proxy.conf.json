@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://127.0.0.1:9300",
+    "target": "https://backds-2-wt30.onrender.com",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
