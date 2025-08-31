@@ -1,589 +1,194 @@
-/* General Card Style */
-.card {
-  border: none;
-  border-radius: 10%;
-  box-shadow: 2px 2px 2px rgb(3, 3, 3);
-}
-.chart-card{
-  height:230px;
-}
-.alert-warning {
-  background-color: #fff3cd;
-  border: 1px solid #ffeeba;
-  color: #856404;
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 10px;
+/* General Dashboard Layout */
+.dashboard-container {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  padding: 2rem;
 }
 
-.upload-box {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 10px;
+.dashboard-header {
+  margin-bottom: 3rem;
 }
 
-.fixed-button {
-  position: fixed;
-  bottom: 40vh;
-  right: 20px;
-  padding: 12px;
-  width: 50px;
-  height: 50px;
-  color: white;
-
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.loading-container {
-  text-align: center;
-  margin-top: 20px;
-}
-.loading-container p {
-  margin-top: 10px;
-  font-weight: bold;
-  color: green;
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0e2517;
 }
 
-.fixed-button:hover {
-  content: 'cliquer ici pour creer votre dossier ipv';
-  cursor: pointer;
-  box-shadow: 2px 5px 5px rgb(72, 72, 72);
-  border: none;
-}
-
-.fixed-button1 {
-  position: fixed;
-  bottom: 30vh;
-  right: 20px;
-  padding: 12px;
-  width: 50px;
-  height: 50px;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.fixed-button1:hover {
-  border: 2px rgb(232, 30, 30) solid;
-  box-shadow: 2px 5px 2px rgb(72, 72, 72);
-  cursor: pointer;
-}
-
-/* Message Box */
-.message {
-  display: none;
-  position: fixed;
-  top: 50vh;
-  right: 70px;
-  background-color: white;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 1px 1px 5px rgb(33, 33, 33);
-}
-
-/* Navbar Style */
-.navbar {
-  background: #f4f4f45d;
-}
-
-.nav-item::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 2px;
-  background: #fec400;
-  transition: 0.4s;
-}
-
-.nav-item:hover::after {
-  width: 100%;
-}
-
-.navbar-dark .navbar-nav .active>.nav-link,
-.navbar-dark .navbar-nav .nav-link.active,
-.navbar-dark .navbar-nav .nav-link.show,
-.navbar-dark .navbar-nav .show>.nav-link,
-.navbar-dark .navbar-nav .nav-link:focus,
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: #fec400;
-}
-
-.nav-link a {
-  color: #000000;
-  padding: 25px 5px;
-  transition: 0.5s;
-}
-
-/* Card Text */
-.card-text {
-  font-size: larger;
-}
-
-/* Inline Button Group */
-.btn-group-inline {
-  display: inline-flex;
-  flex-wrap: wrap;
-}
-
-.btn-group-inline button {
-  margin-right: 3px;
-  font-size: smaller;
-}
-
-/* Class1 */
-.class1 {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  margin: 0 auto;
-}
-
-/* Welcome Card */
-.welcome {
-  padding: 25px;
-  width: 100%;
-  max-width: 440px;
-  height: auto;
-  background-image: url(/assets/images/robot.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.welcome p {
-  padding-top: 80px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: small;
-  font-weight: 600;
-  color:rgb(36, 36, 36);
-}
-
-.welcome p span {
-  color: rgb(248, 251, 252);
-  font-weight: 600;
-  font-size: small;
-}
-
-.welcome:hover {
-  border: 1px solid rgb(104, 197, 255);
-  box-shadow: 1px 1px 1px 1px #9f9f9fb8;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-  .col-5, .col-7, .col-6 {
-    flex: 1 1 100%;
-    bottom: 5px;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 10px;
-  }
-
-  .welcome {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .card, .fixed-button, .fixed-button1 {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .message {
-    right: 10px;
-  }
-}
-.bnp-card {
-  text-align: center;
-  padding: 20px;
-}
-
-.bnp-heart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.bmi-input {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.gauge-container {
-  position: relative;
-  width: 200px;
-  height: 100px;
-  overflow: hidden;
-  margin: auto;
-}
-
-.gauge {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: conic-gradient(
-    #2E7D32 60deg,  /* Dark green */
-    #4CAF50 120deg, /* Standard green */
-    #81C784 180deg, /* Light green */
-    #A5D6A7 240deg, /* Softer green */
-    #C8E6C9 300deg, /* Pale green */
-    #2E7D32 360deg  /* Closing the loop with dark green */
-);
-
-
-  transform: rotate(180deg);
-}
-
-.needle {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 4px;
-  height: 100px;
-  background-color: black;
-  transform-origin: bottom;
-  transition: transform 0.5s ease-out;
-}
-
-.bmi-category {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.circular-btn {
-  position: fixed;
-  top: 120px;
-  right: 20px;
-  width: 30px;
-  height: 30px;
-  color: rgb(4, 128, 23);
-  font-size: 30px;
-  border-radius: 50%;  /* Makes it circular */
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  background-color: transparent;
-  transition: 0.3s ease;
-}
-
-.circular-btn:hover {
-  color: #45a049; /* Darker green on hover */
-}
-
-.activity-card {
-  width: 100%;
-  margin: 0;
-  padding: 20px; /* Increased padding */
-  overflow: hidden;
-  height: 320px; /* Slightly taller */
-  background: #FFFFFF;
-  border-radius: 16px; /* More rounded corners */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
-  transition: transform 0.2s ease-in-out; /* Smooth hover effect */
-}
-
-.activity-card:hover {
-  transform: translateY(-4px); /* Lift up on hover */
-}
-
-
-.activity-card .mat-card-title {
-  color: #007bff; /* Blue title */
-  font-weight: 600;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.timeline-container {
-  position: relative;
-  padding: 20px 0;
-  overflow-y: auto;
-  height: calc(100% - 70px); /* Adjust for padding and title */
-}
-
-.timeline {
-  position: absolute;
-  left: 50%;
-  width: 2px; /* Thinner line */
-  background: #ced4da; /* Light gray line */
-  top: 10px; /* Start slightly lower */
-  bottom: 10px; /* End slightly higher */
-  transform: translateX(-1px);
-}
-
-.timeline-item {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  margin-bottom: 35px; /* Increased spacing */
-}
-
-.timeline-item .dot {
-  width: 14px;
-  height: 14px;
-  background: #007bff; /* Blue dot */
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  top: 8px;
-  transform: translateX(-50%);
-  border: 2px solid #fff; /* White border */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle dot shadow */
-}
-
-.activity-bubble {
-  position: relative;
-  padding: 14px 18px;
-  border-radius: 16px;
-  max-width: 280px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More defined shadow */
-  font-size: 14px;
-  line-height: 1.5; /* Improved line height */
-  background: #fff; /* White background */
-  border: 1px solid #eee; /* Light gray border */
-  transition: transform 0.15s ease-in-out; /* Smooth hover transition */
-}
-
-.activity-bubble:hover {
-  transform: scale(1.02); /* Slightly scale up on hover */
-}
-
-.activity-bubble.green {
-  border-color: #c3e6cb; /* Light green border */
-  color: #28a745; /* Green text */
-}
-
-.timeline-item.left .activity-bubble {
-  margin-left: 35px;
-  text-align: left;
-  border-top-left-radius: 4px;
-}
-
-.timeline-item.right .activity-bubble {
-  margin-left: auto;
-  margin-right: 35px;
-  text-align: left;
-  border-top-right-radius: 4px;
-}
-
-.date {
-  font-weight: 500;
-  font-size: 13px;
-  color: #777; /* Darker gray */
-  margin-bottom: 8px;
-}
-
-.description {
-  font-size: 14px;
-  color: #333;
-}
-
-/* Optional: Add a subtle background to the timeline container */
-.timeline-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(245, 247, 249, 0.5); /* Very light gray */
-    z-index: -1; /* Place behind the timeline */
-    border-radius: 12px;
-}
-mat-card {
-  background: transparent !important; /* Makes the card transparent */
-  box-shadow: none !important;        /* Removes card shadow/border */
-}
-.skeleton-chart {
-  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s infinite;
-  height: 250px;
-  flex: 1 1 calc(33.333% - 20px);
-  max-width: calc(33.333% - 20px);
-  border-radius: 8px;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-.file-upload-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.upload-box {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.custom-file-upload {
-  display: inline-block;
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: #2196f3;
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background-color 0.3s;
-}
-
-.custom-file-upload:hover {
-  background-color: #1976d2;
-}
-
-.custom-file-upload input[type="file"] {
-  display: none;
-}
-
-.extract-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.extract-button:hover {
-  background-color: #388e3c;
-}
-
-.file-name {
-  margin-top: 20px;
-  font-size: 16px;
-  color: #333;
-  font-weight: 500;
-}
-
-.loading-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 20px;
-  height: 100%;
-}
-
-.loading-text {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #333;
-}
-
-
-/* Header */
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-header h1 {
-    font-size: 2.5rem;
-    color: #008080; /* Teal */
-    font-weight: 600;
+.dashboard-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
 }
 
 .date-time {
-    font-size: 1rem;
-    color: #777;
+  font-size: 0.95rem;
+  color: #6c757d;
 }
 
-/* Cards Wrapper */
-.cards-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+/* Quick Actions */
+.quick-actions .quick-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Card Base Styles */
+.quick-actions .quick-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Cards */
 .card {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #ffffffcc; /* slightly transparent for subtle glass effect */
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-.card h2 {
-    font-size: 1.8rem;
-    color: #008080; /* Teal */
-    margin-bottom: 20px;
-    font-weight: 500;
+.card-header {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0e2517;
+  border-bottom: none;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.card p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 10px;
+/* Welcome Card */
+.welcome-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  padding: 2rem;
 }
 
-/* Consultations Card */
-.consultation-item {
-    background-color: #f1f8f9;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 10px;
+.welcome-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #007766;
 }
 
-/* Health Metrics Card */
-.metric {
-    background-color: #f1f8f9;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 10px;
+.welcome-card p {
+  font-size: 1rem;
+  color: #6c757d;
 }
 
-.metric h3 {
-    font-size: 1.3rem;
-    color: #008080;
-    margin-bottom: 10px;
+.welcome-img {
+  width: 130px;
+  align-self: flex-end;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
 }
 
-.metric p {
-    font-size: 1rem;
-    color: #555;
+.welcome-img:hover {
+  transform: scale(1.05);
 }
 
-/* Prescriptions Card */
-.prescription-item {
-    background-color: #f1f8f9;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 10px;
+/* File Upload Card */
+.custom-file-upload {
+  background: linear-gradient(135deg, #00C9A7, #007766);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.custom-file-upload:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.extract-button {
+  background: #007766;
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.extract-button:hover:not([disabled]) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Timeline Card */
+.timeline-item {
+  padding: 1rem;
+  border-left: 3px solid #00C9A7;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.timeline-item h6 {
+  font-weight: 600;
+  color: #0e2517;
+}
+
+.timeline-item p {
+  color: #6c757d;
+  margin: 0.3rem 0 0 0;
+}
+
+/* Health & Blood Sugar Cards */
+.chart-card, .health-card, .blood-sugar-card {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.chart-card:hover, .health-card:hover, .blood-sugar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Canvas Charts */
+canvas {
+  border-radius: 12px;
+  background: #f8f9fa;
+  padding: 0.5rem;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .welcome-card h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Utility Classes */
+.text-muted {
+  color: #6c757d !important;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+}
