@@ -1,133 +1,162 @@
-<div class="file-upload-container" *ngIf="!extractedData || extractedData.length === 0">
-  <ng-container *ngIf="!loading; else loadingTemplate">
-    <div class="upload-box">
-      <label class="custom-file-upload">
-        <input type="file" (change)="onFileSelected($event)" *ngIf="!loading" />
-        Choose File
-      </label>
+<div class="container-fluid dashboard-container">
 
-      <button class="extract-button" (click)="extract_data()">
-        Extract
+  <!-- Header -->
+  <header class="dashboard-header d-flex flex-column flex-md-row justify-content-between align-items-center mb-5">
+    <div>
+      <h1 class="dashboard-title">Good Morning, {{patientName}} 👋</h1>
+      <p class="dashboard-subtitle text-muted">Track your health metrics, appointments, and progress at a glance.</p>
+    </div>
+    <div class="date-time text-muted">Today: {{ today | date:'fullDate' }}</div>
+  </header>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions row g-3 mb-5">
+    <div class="col-sm-6 col-md-3" *ngFor="let action of quickActions">
+      <button class="quick-btn shadow-sm" [ngStyle]="{'background': action.color}">
+        <i [class]="action.icon"></i> {{ action.label }}
       </button>
     </div>
-    
-    <!-- Display notification message if available -->
-    <div class="alert alert-warning mt-2" *ngIf="!showUploadBox && notificationMessage">
-      {{ notificationMessage }}
-    </div>
-    
-    <!-- Display selected file name -->
-    <div class="file-name" *ngIf="selectedFileName">
-      📄 {{ selectedFileName }}
-    </div>
-  </ng-container>
+  </div>
 
-  <!-- Loading state template -->
-  <ng-template #loadingTemplate>
-    <div class="loading-box">
-      <mat-spinner [diameter]="50" color="primary"></mat-spinner>
-      <div class="loading-text">Processing, please wait...</div>
-    </div>
-  </ng-template>
-</div>
+  <!-- Welcome + File Upload Cards -->
+  <div class="row g-4 mb-5">
 
-<!-- Vue d’ensemble Section (Appointments & Consultations) -->
+    <!-- Welcome Card with BMI / Weight / Height -->
+    <div class="col-lg-6">
+      <div class="card welcome-card p-4 shadow-sm position-relative overflow-hidden">
+        
+        <!-- Decorative Circle -->
+        <div class="decorative-circle position-absolute"></div>
 
-    <div class="container">
-        <!-- Header Section -->
-   
-
-        <div class="cards-wrapper">
-            <!-- Next Appointment Card -->
-            <div class="card appointment-card">
-                <h2>Next Appointment</h2>
-                <p><strong>Date:</strong> 08/25/2025</p>
-                <p><strong>Time:</strong> 10:00 AM</p>
-                <p><strong>Doctor:</strong> Dr. Sarah Jameson</p>
-                <p><strong>Location:</strong> City Health Clinic</p>
-            </div>
-            <!-- Health Metrics Card -->
-            <div class="card health-metrics-card">
-                <h2>Health Metrics</h2>
-                <div class="metric">
-                    <h3>BMI</h3>
-                    <p><strong>Category:</strong> Normal</p>
-                    <p><strong>Value:</strong> 22.5</p>
-                    <p>Normal weight range: 18.5 - 24.9</p>
-                </div>
-
-                <div class="metric">
-                    <h3>Blood Pressure</h3>
-                    <p><strong>Systolic:</strong> 0 mmHg</p>
-                    <p><strong>Diastolic:</strong> 0 mmHg</p>
-                    <p><i>Data unavailable</i></p>
-                </div>
-
-                <div class="metric">
-                    <h3>Blood Type</h3>
-                    <p><strong>Type:</strong> A+</p>
-                </div>
-            </div>
-
-            <!-- Prescriptions Card -->
-            <div class="card prescriptions-card">
-                <h2>View Prescriptions</h2>
-                <div class="prescription-item">
-                    <p><strong>Medication:</strong> Ibuprofen</p>
-                    <p><strong>Dosage:</strong> 200mg</p>
-                    <p><strong>Frequency:</strong> Twice a day after meals</p>
-                    <p><strong>Start Date:</strong> 08/10/2025</p>
-                </div>
-                <div class="prescription-item">
-                    <p><strong>Medication:</strong> Paracetamol</p>
-                    <p><strong>Dosage:</strong> 500mg</p>
-                    <p><strong>Frequency:</strong> Once a day</p>
-                    <p><strong>Start Date:</strong> 08/05/2025</p>
-                </div>
-            </div>
+        <!-- Greeting -->
+        <div class="mb-4">
+          <h3 class="fw-bold">Stay on Top of Your Health</h3>
+          <p class="text-muted">Monitor your metrics like BMI, weight, and blood pressure with ease.</p>
         </div>
 
-  
+        <!-- Body + BMI Visualization -->
+        <div class="d-flex align-items-center mb-4">
+          
+          <!-- Body Illustration -->
+          <div class="body-illustration me-4 position-relative">
+            <img src="/assets/images/silouhette.png" alt="Body Form" style="height: 180px;">
+          </div>
 
-
-
-<!-- Blood Sugar Section -->
-<div class="container mt-5">
-  <div class="row">
-    <div class="blood-sugar-section">
-      <ng-container *ngIf="loading; else showBloodSugar">
-        <div class="loading-state">
-          <mat-spinner [diameter]="50" color="primary"></mat-spinner>
-          <div>Loading Blood Sugar Data...</div>
-        </div>
-      </ng-container>
-
-      <ng-template #showBloodSugar>
-        <div *ngIf="bloodSugarCharts.length > 0; else noData">
-          <div class="chart-container row">
-            <div *ngFor="let chart of bloodSugarCharts; let i = index" class="col-12 col-md-4 mb-4">
-              <apx-chart 
-                [series]="chart.series" 
-                [chart]="chart.chart"
-                [xaxis]="chart.xaxis"
-                [stroke]="chart.stroke"
-                [title]="chart.title"
-                [dataLabels]="chart.dataLabels"
-                [fill]="chart.fill"
-                [yaxis]="chart.yaxis"
-                [tooltip]="chart.tooltip"
-                [plotOptions]="chart.plotOptions">
-              </apx-chart>
+          <!-- Half-Circle BMI Progress -->
+          <div class="bmi-progress position-relative" style="width:150px; height:75px;">
+            <svg viewBox="0 0 100 50">
+              <!-- Background Arc -->
+              <path d="M10,50 A40,40 0 0,1 90,50" stroke="#e6e6e6" stroke-width="10" fill="none"/>
+              <!-- Active BMI Arc -->
+        
+            </svg>
+            <div class="bmi-value position-absolute top-50 start-50 translate-middle text-center">
+              <h5 class="fw-bold mb-0">{{bmi}}</h5>
+              <small class="text-muted">BMI</small>
             </div>
           </div>
         </div>
 
-        <ng-template #noData>
-          <div class="no-data-message">No Data Available...</div>
-        </ng-template>
-      </ng-template>
+        <!-- Health Stats Highlights -->
+        <div class="row mb-4 text-center">
+          <div class="col-4 stat">
+            <h5 class="fw-bold">{{weight}} kg</h5>
+            <p class="text-muted mb-0">Weight</p>
+          </div>
+          <div class="col-4 stat">
+            <h5 class="fw-bold">{{height}} cm</h5>
+            <p class="text-muted mb-0">Height</p>
+          </div>
+     
+        </div>
+
+        <!-- Additional Metrics -->
+    
+
+        <!-- Call-to-Action Button -->
+        <button class="btn btn-gradient btn-lg align-self-start">
+          View Profile <i class="fa-solid fa-arrow-right ms-2"></i>
+        </button>
+
+        <!-- Decorative Illustration -->
+        <img src="/assets/images/illustration-doc.png" alt="Medical Illustration" class="welcome-img position-absolute bottom-0 end-0 opacity-25" style="width: 150px;">
+      </div>
+    </div>
+
+    <!-- File Upload Card -->
+    <div class="col-lg-6">
+      <div class="card upload-card p-4 shadow-sm">
+        <h5 class="card-header fw-bold">Upload Biochemistry Document</h5>
+        <div class="card-body d-flex flex-column gap-3 mt-2">
+          <label class="btn custom-file-upload shadow-sm">
+            <i class="fa-solid fa-file-upload"></i> Choose File
+            <input type="file" hidden (change)="onFileSelected($event)">
+          </label>
+          <button class="btn extract-button btn-lg shadow-sm" (click)="extract_data()" [disabled]="!selectedFileName">
+            Extract Data
+          </button>
+          <div class="file-name text-truncate" *ngIf="selectedFileName">📄 {{ selectedFileName }}</div>
+          <p class="text-muted mb-0" *ngIf="!loading">Upload PDF or Excel. Graphs generated automatically.</p>
+          <p class="text-success mb-0" *ngIf="bioChartNote">{{bioChartNote}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Upcoming Appointments Timeline -->
+  <div class="row g-4 mb-5">
+    <div class="col-12">
+      <div class="card timeline-card p-4 shadow-sm">
+        <h5 class="card-header fw-bold">Upcoming Appointments & Actions</h5>
+        <div class="timeline mt-3">
+          <div class="timeline-item" *ngFor="let item of timelineItems">
+            <h6 class="fw-bold">{{item.title}}</h6>
+            <p class="text-muted">{{item.description}}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Floating Button -->
+  <!-- Health Metrics + Biochemistry Charts -->
+  <div class="row g-4 mb-5">
+
+    <!-- Health Metrics Cards -->
+    <div class="col-lg-3 col-md-6" *ngFor="let chart of healthCharts">
+      <div class="card health-card p-4 shadow-sm">
+        <h6 class="card-header fw-bold">{{chart.title}}</h6>
+        <canvas [id]="chart.id" class="mt-3 rounded"></canvas>
+      </div>
+    </div>
+
+    <!-- Biochemistry Metrics Card -->
+    <div class="col-lg-12">
+      <div class="card blood-sugar-card p-4 shadow-sm">
+        <h5 class="card-header fw-bold">Biochemistry Metrics</h5>
+        <div *ngIf="bloodSugarCharts.length; else noData" class="row g-4 mt-3">
+          <div class="col-md-4" *ngFor="let bsChart of bloodSugarCharts">
+            <apx-chart
+              [series]="bsChart.series"
+              [chart]="bsChart.chart"
+              [xaxis]="bsChart.xaxis"
+              [stroke]="bsChart.stroke"
+              [title]="bsChart.title"
+              [dataLabels]="bsChart.dataLabels"
+              [fill]="bsChart.fill"
+              [yaxis]="bsChart.yaxis"
+              [tooltip]="bsChart.tooltip"
+              [plotOptions]="bsChart.plotOptions"
+              class="rounded shadow-sm">
+            </apx-chart>
+          </div>
+        </div>
+        <ng-template #noData>
+          <div class="text-center text-muted">No Biochemistry Data Available</div>
+        </ng-template>
+      </div>
+    </div>
+
+  </div>
+
+</div>
