@@ -43,7 +43,46 @@ export class DashboardComponent implements OnInit {
   showUploadBox = false;
   notificationMessage: string = '';
   daysLeft: number = 0;
+ patientName: string = 'John';
+ today: Date = new Date();
 
+  // Quick action buttons
+  quickActions = [
+    { label: 'Book Appointment', icon: 'fa-solid fa-calendar-check', color: 'linear-gradient(45deg,#00C9A7,#007766)' },
+    { label: 'Upload Report', icon: 'fa-solid fa-upload', color: 'linear-gradient(45deg,#007BFF,#00BFFF)' },
+    { label: 'Request Prescription', icon: 'fa-solid fa-file-prescription', color: 'linear-gradient(45deg,#FFC107,#FFB300)' },
+    { label: 'Chat with Doctor', icon: 'fa-solid fa-comments', color: 'linear-gradient(45deg,#FF6B6B,#FF4757)' },
+  ];
+
+bmiArcPercentage= 24
+  // Timeline items
+  timelineItems = [
+    { title: 'Next Doctor Appointment', description: 'Dr. Smith - 02 Sep 2025, 10:00 AM' },
+    { title: 'Medication Reminder', description: 'Take blood pressure meds at 08:00 AM' },
+    { title: 'Lab Test', description: 'Blood glucose test on 04 Sep 2025' },
+    { title: 'Follow-up Call', description: 'Nurse will call on 05 Sep 2025 to discuss results' }
+  ];
+bmi =24
+  // Biochemistry chart note
+    
+  bmiArcPath: string = '';
+
+
+  updateBmiArc(): void {
+    // Map BMI to arc endpoint (0 = 10,50, 100% = 90,50 for demonstration)
+    // You can make this proportional to BMI range (e.g., 0-40)
+    const percent = Math.min(this.bmi / 40, 1); // Clamp 0-1
+    const endX = 10 + percent * 80; // 10 -> 90
+    this.bmiArcPath = `M10,50 A40,40 0 0,1 ${endX},50`;
+  }
+
+  // Health charts for Blood Pressure, Glucose, Weight, Heart Rate
+  healthCharts = [
+    { id: 'bpChart', title: 'Blood Pressure' },
+    { id: 'glucoseChart', title: 'Glucose Level' },
+    { id: 'weightChart', title: 'Weight Trend' },
+    { id: 'heartChart', title: 'Heart Rate' }
+  ];
 callextract() {
     const storedDate = localStorage.getItem('startDate');
     const currentDate = new Date();
@@ -173,8 +212,8 @@ callextract() {
       data: {}
     });
   }
-  weighth: number = 0;  // Default weight value
-  height: number = 0;   // Default height value
+  weighth: number = 80;  // Default weight value
+  height: number = 190;   // Default height value
   sex: string = 'female'; // Default sex ('male' or 'female')
   bmiCategory: string = 'Normal';
   needleAngle: number = -45; // Default angle for 'Normal' category
@@ -186,8 +225,11 @@ callextract() {
     { date: '03 FEB 25', description: 'Successfully logged in' },
     // Add more activities as needed
   ];
+  bioChartNote: string = ''; // Default empty, you can update it dynamically
 
   ngOnInit(): void {
+    this.bioChartNote = 'Graphs will appear after uploading a document.';
+    this.updateBmiArc();
     this.healthformserivice.getHealthForms().subscribe(data => {
       if (data && data.length > 0) {
         const healthData = data[0];  // Access the first element of the array
