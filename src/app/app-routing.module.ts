@@ -26,7 +26,7 @@ import { PresentationComponent } from './homepage/presentation/presentation.comp
 const routes: Routes = [
   // Public routes
 {
-path:'',
+path:'/home',
 component:PresentationComponent,
 canActivate:[BeforeLoginService]
 },
@@ -79,3 +79,4 @@ canActivate:[BeforeLoginService]
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
